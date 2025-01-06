@@ -30,7 +30,7 @@ public class Network {
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
         for (int i = 0; i < userCount; i++) {
-            if (users[i].getName().equals(name)) {
+            if (users[i].getName().equalsIgnoreCase(name)) {
                 return users[i];
             }
         }
@@ -62,7 +62,6 @@ public class Network {
             return false;
         }
         if (this.getUser(name2) == null) {
-
             return false;
         }
         return this.getUser(name1).addFollowee(name2);
@@ -116,9 +115,9 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String ans = "Network:\n";
+        String ans = "Network:";
         for (int i = 0; i < this.userCount; i++) {
-            ans = ans + this.users[i] + "\n";
+            ans = ans + "\n" + this.users[i];
         }
         return ans;
     }

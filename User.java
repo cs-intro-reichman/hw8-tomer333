@@ -67,23 +67,22 @@
     /** Removes the given name from the follows list of this user. If successful, returns true.
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
-        System.out.println(fCount);
-        if (this.follows[fCount-1].equals(name)) {
-            follows[fCount-1] = null;
-            fCount--;
-            return true;
+        if (fCount == 0 || !this.follows(name)) {
+            return false;
         }
         boolean eq = false;
-        for (int i = 0; i < fCount-1; i++) {
+        for (int i = 0; i < fCount; i++) {
             if (follows[i].equals(name)) {
-                follows[i] = null;
                 eq = true;
             }
-            if (eq) {
+            if (eq && i < fCount-1) {
                 follows[i] = follows[i+1];
             }
         }
-        if (eq) {fCount--;}
+        if (eq) {
+            follows[fCount - 1] = null;
+            fCount--;
+        }
         return eq;
     }
 
