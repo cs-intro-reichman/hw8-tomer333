@@ -43,17 +43,14 @@ public class Network {
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
         if (this.getUser(name) != null) {
-            System.out.println(name+" Already exits in this Network");
             return false;
         }
         if (userCount == users.length) {
-            System.out.println("Can not add the Network is full");
             return false;
         }
         User newUser = new User(name);
         users[userCount] = newUser;
         userCount++;
-        System.out.println("Successfully added "+name+" to the Network");
         return true;
     }
 
@@ -62,11 +59,10 @@ public class Network {
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
         if (this.getUser(name1) == null) {
-            System.out.println("The User "+name1+" is not in this Network");
             return false;
         }
         if (this.getUser(name2) == null) {
-            System.out.println("The User "+name2+" is not in this Network");
+
             return false;
         }
         return this.getUser(name1).addFollowee(name2);

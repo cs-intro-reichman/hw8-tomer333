@@ -54,16 +54,13 @@
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
         if (this.follows(name)) {
-            System.out.println("You are following "+name+" currently");
             return false;
         }
         if (fCount == maxfCount) {
-            System.out.println("You are at your following limit");
             return false;
         }
         follows[fCount] = name;
         fCount++;
-        System.out.println("Successfully added "+name+" to the follows list");
         return true;
     }
 
@@ -74,7 +71,6 @@
         if (this.follows[fCount-1].equals(name)) {
             follows[fCount-1] = null;
             fCount--;
-            System.out.println("Successfully removed "+name+" to the follows list");
             return true;
         }
         boolean eq = false;
@@ -82,14 +78,12 @@
             if (follows[i].equals(name)) {
                 follows[i] = null;
                 eq = true;
-                System.out.println("Successfully removed "+name+" to the follows list");
             }
             if (eq) {
                 follows[i] = follows[i+1];
             }
         }
         if (eq) {fCount--;}
-        if (!eq) {System.out.println("You are not following "+name);}
         return eq;
     }
 
